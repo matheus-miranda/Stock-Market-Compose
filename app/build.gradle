@@ -7,6 +7,10 @@ plugins {
     id 'com.google.devtools.ksp' version '1.6.10-1.0.2'
 }
 
+def apikeyPropertiesFile = rootProject.file("apikey.properties")
+def apikeyProperties = new Properties()
+apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+
 android {
     compileSdk 32
 
@@ -21,6 +25,9 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        buildConfigField "String", "API_KEY", apikeyProperties['API_KEY']
+        buildConfigField "String", "BASE_URL", '"https://www.alphavantage.co/"'
     }
 
     buildTypes {
