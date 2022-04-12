@@ -2,8 +2,10 @@ package com.msmlabs.stockmarket.di
 
 import com.msmlabs.stockmarket.data.csv.CompanyListingsParser
 import com.msmlabs.stockmarket.data.csv.CsvParser
+import com.msmlabs.stockmarket.data.csv.IntraDayInfoParser
 import com.msmlabs.stockmarket.data.repository.StockRepositoryImpl
 import com.msmlabs.stockmarket.domain.model.CompanyListing
+import com.msmlabs.stockmarket.domain.model.IntraDayInfo
 import com.msmlabs.stockmarket.domain.repository.StockRepository
 import dagger.Binds
 import dagger.Module
@@ -20,6 +22,12 @@ abstract class RepositoryModule {
     abstract fun bindCompanyListingsParser(
         companyListingsParser: CompanyListingsParser
     ): CsvParser<CompanyListing>
+
+    @Binds
+    @Singleton
+    abstract fun bindIntraDayInfoParser(
+        intraDayInfoParser: IntraDayInfoParser
+    ): CsvParser<IntraDayInfo>
 
     @Binds
     @Singleton
